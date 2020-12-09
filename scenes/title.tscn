@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/sprites/Button_Play.png" type="Texture" id=1]
+[ext_resource path="res://scripts/start.gd" type="Script" id=2]
+
+[node name="title" type="Node"]
+script = ExtResource( 2 )
+
+[node name="start" type="TextureButton" parent="."]
+margin_left = 320.0
+margin_top = 320.0
+margin_right = 788.0
+margin_bottom = 384.0
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Label" parent="."]
+margin_left = 480.0
+margin_top = 144.0
+margin_right = 556.0
+margin_bottom = 158.0
+text = "Space fights"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 464.0
+margin_top = 448.0
+margin_right = 616.0
+margin_bottom = 488.0
+text = "wasd to move
+space or click to shoot"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="button_down" from="start" to="." method="_on_start_button_down"]

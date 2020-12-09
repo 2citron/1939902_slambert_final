@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/enemy.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/Enemy_3_Neon.png" type="Texture" id=2]
+[ext_resource path="res://scenes/missile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/audio/missile.wav" type="AudioStream" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 1192.03
+
+[node name="bomber" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 1 )
+speed = 150
+bullet = ExtResource( 3 )
+
+[node name="timer" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+rotation = -1.5708
+polygon = PoolVector2Array( -56, -48, -32, -64, 32, -64, 56, -48, 48, 64, 32, 56, 32, 24, 16, 8, 0, 24, -16, 8, -32, 24, -32, 56, -48, 64 )
+
+[node name="canon" type="Position2D" parent="."]
+position = Vector2( 24, 0 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="Enemy_3_Neon" type="Sprite" parent="."]
+rotation = -1.5708
+texture = ExtResource( 2 )
+
+[node name="pew" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
